@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View, Text} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import CarparkStack from "./screen/CarparkStack";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+const Stack = createStackNavigator();
+const InnerStack = createStackNavigator();
+
+function AddScreen(){
+  return(
+    <View>
+      <Text>Add Screen</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+export default function app(){
+  return(
+    <NavigationContainer>
+      <Stack.Navigator mode="modal" headerMode="none">
+      <Stack.Screen name="Carpark Stack" component={CarparkStack} />
+      <Stack.Screen name="Add Carpark" component={AddScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
